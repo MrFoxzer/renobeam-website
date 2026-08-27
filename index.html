@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0d">
+  <title>RenoBeam — AI Renovation Estimator | Photos in. Quote out.</title>
+  <meta name="description" content="Upload photos and a short video of any space and get a detailed line-item renovation estimate in minutes — labor, materials, quantities, regional pricing, and a branded client-ready PDF proposal. Built by a working remodeling contractor.">
+  <link rel="canonical" href="https://renobeam.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RenoBeam">
+  <meta property="og:title" content="RenoBeam — AI Renovation Estimator">
+  <meta property="og:description" content="Photos in. Quote out. Line-item renovation estimates — labor, materials, quantities, regional pricing — plus branded PDF proposals, in minutes.">
+  <meta property="og:url" content="https://renobeam.com/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RenoBeam — AI Renovation Estimator">
+  <meta name="twitter:description" content="Photos in. Quote out. Line-item renovation estimates in minutes, plus branded PDF proposals. Built by a working remodeling contractor.">
+
+  <!-- Favicon (inline SVG data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230e0e13'/%3E%3Cpath%20d='M12%2030%2032%2015%2052%2030'%20fill='none'%20stroke='%23f97316'%20stroke-width='5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M12%2048%2052%2024'%20stroke='%23fbbf24'%20stroke-width='5'%20stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://renobeam.com/#org",
+        "name": "RenoBeam",
+        "url": "https://renobeam.com/",
+        "description": "AI renovation estimator that turns photos and a short video of any space into a detailed line-item renovation estimate with a branded PDF proposal.",
+        "founder": {
+          "@type": "Person",
+          "name": "Jacob Fischer",
+          "jobTitle": "Founder",
+          "description": "Working remodeling contractor and owner of Revisions Unlimited LLC in Central Minnesota."
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "RenoBeam",
+        "url": "https://renobeam.com/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "publisher": { "@id": "https://renobeam.com/#org" },
+        "description": "Upload photos and a short video of any space and get a detailed line-item renovation estimate in minutes — labor, materials, quantities, and regional price adjustment — plus a branded, client-ready PDF proposal.",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Solo",
+            "price": "79.00",
+            "priceCurrency": "USD",
+            "description": "25 estimates per month, photo and video capture, line-item breakdowns."
+          },
+          {
+            "@type": "Offer",
+            "name": "Crew",
+            "price": "199.00",
+            "priceCurrency": "USD",
+            "description": "100 estimates per month, 5 team seats, branded PDF proposals, price-book customization."
+          },
+          {
+            "@type": "Offer",
+            "name": "Firm",
+            "price": "499.00",
+            "priceCurrency": "USD",
+            "description": "Unlimited estimates, API access, priority support."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Aurora background -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob aurora-blob--a"></div>
+    <div class="aurora-blob aurora-blob--b"></div>
+    <div class="aurora-blob aurora-blob--c"></div>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ================= Navigation ================= -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="RenoBeam home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="logo-grad" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fbbf24"/>
+              <stop offset="1" stop-color="#f97316"/>
+            </linearGradient>
+          </defs>
+          <path d="M5 14.5 16 6l11 8.5V27H5Z" stroke="rgba(245,243,239,0.85)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 24.5 25 12" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="25" cy="12" r="2.2" fill="#fbbf24"/>
+        </svg>
+        <span>Reno<span class="logo-beam-word">Beam</span></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#use-cases">Who it's for</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="btn btn-primary btn-sm nav-cta" href="#waitlist">Start free</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= Hero ================= -->
+    <section class="hero" id="top">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>AI Renovation Estimator</span>
+          <h1>Photos in.<br><span class="grad-text">Quote out.</span></h1>
+          <p class="hero-sub">Upload photos and a short walkthrough video of any space. RenoBeam returns a detailed line-item estimate — labor, materials, quantities, and regional pricing — plus a client-ready PDF proposal. In minutes, not days.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-lg" href="#waitlist">Get 3 free estimates</a>
+            <a class="btn btn-ghost btn-lg" href="#how-it-works">See how it works</a>
+          </div>
+          <p class="hero-note"><strong>No card required.</strong> Built by a working remodeling contractor.</p>
+        </div>
+
+        <!-- Product mockup: wireframe room + scanning beam + estimate card -->
+        <div class="hero-mockup" data-reveal>
+          <div class="mockup-frame">
+            <div class="room-viz" aria-hidden="true">
+              <svg viewBox="0 0 480 340">
+                <!-- back wall -->
+                <rect class="room-line" x="130" y="70" width="220" height="160"/>
+                <!-- corner perspective lines -->
+                <path class="room-line" d="M0 0 130 70"/>
+                <path class="room-line" d="M480 0 350 70"/>
+                <path class="room-line" d="M0 340 130 230"/>
+                <path class="room-line" d="M480 340 350 230"/>
+                <!-- window on back wall -->
+                <rect class="room-line room-line--accent" x="180" y="100" width="120" height="70"/>
+                <path class="room-line room-line--accent" d="M240 100v70M180 135h120"/>
+                <!-- door on right wall -->
+                <path class="room-line" d="M380 92 420 74 420 289 380 255Z"/>
+                <circle class="room-line" cx="413" cy="185" r="2.5"/>
+                <!-- base cabinets on left wall -->
+                <path class="room-line" d="M22 262 126 206 126 236 22 298Z"/>
+                <path class="room-line" d="M57 243v37M92 224v37"/>
+                <!-- floor lines -->
+                <path class="room-line" d="M120 340 175 230"/>
+                <path class="room-line" d="M240 340 240 230"/>
+                <path class="room-line" d="M360 340 305 230"/>
+                <!-- measurement: width above window -->
+                <path class="room-measure" d="M180 88h120"/>
+                <path class="room-measure" d="M180 84v8M300 84v8"/>
+                <text class="room-measure-label" x="240" y="82" text-anchor="middle">12 ft</text>
+                <!-- measurement: wall height -->
+                <path class="room-measure" d="M362 70v160"/>
+                <path class="room-measure" d="M358 70h8M358 230h8"/>
+                <text class="room-measure-label" x="374" y="154">8 ft</text>
+                <!-- scan nodes at back-wall corners -->
+                <circle class="room-node" cx="130" cy="70" r="3.5"/>
+                <circle class="room-node" cx="350" cy="70" r="3.5"/>
+                <circle class="room-node" cx="130" cy="230" r="3.5"/>
+                <circle class="room-node" cx="350" cy="230" r="3.5"/>
+              </svg>
+              <div class="scan-beam"></div>
+              <span class="room-status"><span class="pulse-dot"></span>Scanning space</span>
+            </div>
+
+            <div class="estimate-card">
+              <div class="estimate-head">
+                <span class="estimate-title">Kitchen — full refresh<small>Line-item estimate</small></span>
+                <span class="chip">Sample</span>
+              </div>
+              <div class="estimate-item">
+                <span class="item-name">Demo &amp; disposal<small>Labor + dumpster</small></span>
+                <span class="item-price">$1,840</span>
+              </div>
+              <div class="estimate-item">
+                <span class="item-name">Drywall, 620 sq ft<small>Hang, tape, finish</small></span>
+                <span class="item-price">$2,480</span>
+              </div>
+              <div class="estimate-item">
+                <span class="item-name">Cabinet install, 14 units<small>Labor + hardware</small></span>
+                <span class="item-price">$3,150</span>
+              </div>
+              <div class="estimate-item">
+                <span class="item-name">LVP flooring, 480 sq ft<small>Material + install</small></span>
+                <span class="item-price">$2,930</span>
+              </div>
+              <div class="estimate-item">
+                <span class="item-name">Paint, walls + ceiling<small>Two coats, primed</small></span>
+                <span class="item-price">$1,260</span>
+              </div>
+              <div class="estimate-item">
+                <span class="item-name">Recessed lighting, 6 LED<small>Fixtures + wiring</small></span>
+                <span class="item-price">$940</span>
+              </div>
+              <div class="estimate-total">
+                <span class="total-label">Estimate total</span>
+                <span class="total-value">$12,600</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Features (bento) ================= -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">What you get</span>
+          <h2>Estimates that read like a <span class="grad-text">contractor wrote them</span></h2>
+          <p>No vague lump sums. Every estimate is broken into the line items real contractors actually price — so you can defend every number in front of a client.</p>
+        </div>
+
+        <div class="bento" data-reveal-group>
+          <div class="bento-cell bento-cell--wide" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 9.5h16M4 14h10M4 18.5h7"/></svg>
+            </div>
+            <h3>Line items, not lump sums</h3>
+            <p>Labor, materials, and quantities itemized separately for every scope of work — demo, framing, drywall, flooring, paint, electrical, plumbing, and more. Structured the way working contractors actually build a bid.</p>
+            <div class="bento-mini-rows" aria-hidden="true">
+              <div><span>Framing, 2x4 partition wall</span><span>$1,120</span></div>
+              <div><span>Tile, 96 sq ft backsplash</span><span>$1,470</span></div>
+              <div><span>Trim &amp; casing, 210 lin ft</span><span>$1,680</span></div>
+            </div>
+          </div>
+
+          <div class="bento-cell" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="12.5" r="3.5"/></svg>
+            </div>
+            <h3>Photo + video capture</h3>
+            <p>A handful of photos and a short walkthrough video from any phone is all the input RenoBeam needs. No laser scanner, no special hardware.</p>
+          </div>
+
+          <div class="bento-cell" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 21 7M3 17l2.5-1.4M6.5 15 8 17.6M10 13l1.5 2.6M13.5 11l1.5 2.6M17 9l1.5 2.6"/></svg>
+            </div>
+            <h3>Quantities measured for you</h3>
+            <p>Square footage, linear footage, and unit counts pulled straight from your capture — the takeoff work that normally eats your evenings.</p>
+          </div>
+
+          <div class="bento-cell" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4 5.6 4 9s-1.2 6.4-4 9c-2.8-2.6-4-5.6-4-9s1.2-6.4 4-9Z"/></svg>
+            </div>
+            <h3>Regional price adjustment</h3>
+            <p>Labor and material baselines adjust to your market, wherever you work — so a bathroom in one city doesn't get priced like one in another.</p>
+          </div>
+
+          <div class="bento-cell" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6a2 2 0 0 1 2-2h14v13.5H6.5a2.5 2.5 0 0 0 0 5H20"/><path d="M9 8.5h7"/></svg>
+            </div>
+            <h3>Your price book</h3>
+            <p>Override any rate with your own numbers. RenoBeam learns how your business prices and applies it to every future estimate.</p>
+          </div>
+
+          <div class="bento-cell bento-cell--wide" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h8.5L20 8v13.5H6Z"/><path d="M14.5 2.5V8H20M9 13h8M9 17h5"/></svg>
+            </div>
+            <h3>Branded, client-ready PDF proposals</h3>
+            <p>One tap turns an estimate into a polished proposal with your logo, your company details, and your terms. Send it before you've left the driveway — quote 10x faster and win the jobs your slower competitors are still typing up.</p>
+          </div>
+
+          <div class="bento-cell" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5"/><circle cx="17.5" cy="9.5" r="2.5"/><path d="M16 15.2c2.7.2 4.8 1.8 5.5 4.3"/></svg>
+            </div>
+            <h3>Built for crews</h3>
+            <p>Team seats let your lead carpenter or project manager capture a space and fire off the estimate — without you on site.</p>
+          </div>
+
+          <div class="bento-cell bento-cell--full" data-reveal>
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/></svg>
+            </div>
+            <div class="bento-body">
+              <h3>API access</h3>
+              <p>Pipe estimates into your CRM, job-management platform, or insurance workflow with the RenoBeam API on the Firm plan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= How it works ================= -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">How it works</span>
+          <h2>From walkthrough to winning bid in <span class="grad-text">three steps</span></h2>
+        </div>
+
+        <div class="steps" data-reveal-group>
+          <div class="step" data-reveal>
+            <span class="step-num">Step 01</span>
+            <h3>Capture the space</h3>
+            <p>Walk the room with your phone. Snap photos of each wall and record a short video — under a minute is plenty. Upload straight from the job site.</p>
+          </div>
+          <div class="step" data-reveal>
+            <span class="step-num">Step 02</span>
+            <h3>The beam does the takeoff</h3>
+            <p>RenoBeam measures the space, itemizes labor and materials with quantities, and adjusts pricing to your region. Review and tweak any line before it goes out.</p>
+          </div>
+          <div class="step" data-reveal>
+            <span class="step-num">Step 03</span>
+            <h3>Send the proposal</h3>
+            <p>Export a branded, client-ready PDF with your logo and terms. What used to take an evening at the desk now happens before you leave the driveway.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Use cases ================= -->
+    <section class="section" id="use-cases">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Who it's for</span>
+          <h2>Built for everyone who <span class="grad-text">prices work</span></h2>
+        </div>
+
+        <div class="usecases" data-reveal-group>
+          <div class="usecase" data-reveal>
+            <span class="usecase-dot" aria-hidden="true"></span>
+            <div><strong>Remodeling contractors</strong><span>Quote same-day, win more jobs</span></div>
+          </div>
+          <div class="usecase" data-reveal>
+            <span class="usecase-dot" aria-hidden="true"></span>
+            <div><strong>Framers &amp; GCs</strong><span>Fast takeoffs on every scope</span></div>
+          </div>
+          <div class="usecase" data-reveal>
+            <span class="usecase-dot" aria-hidden="true"></span>
+            <div><strong>Handyman services</strong><span>Small jobs priced in minutes</span></div>
+          </div>
+          <div class="usecase" data-reveal>
+            <span class="usecase-dot" aria-hidden="true"></span>
+            <div><strong>Kitchen &amp; bath specialists</strong><span>Detailed room-level breakdowns</span></div>
+          </div>
+          <div class="usecase" data-reveal>
+            <span class="usecase-dot" aria-hidden="true"></span>
+            <div><strong>Insurance adjusters</strong><span>Consistent, itemized scopes</span></div>
+          </div>
+          <div class="usecase" data-reveal>
+            <span class="usecase-dot" aria-hidden="true"></span>
+            <div><strong>Homeowners</strong><span>An honest ballpark before you call anyone</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Founder ================= -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-card" data-reveal>
+          <span class="eyebrow">Why RenoBeam exists</span>
+          <blockquote>&ldquo;Built by a working remodeling contractor, not a software company <span class="grad-text">guessing at construction</span>.&rdquo;</blockquote>
+          <p>RenoBeam was built by Jacob Fischer, a working remodeling contractor and the owner of Revisions Unlimited LLC in Central Minnesota. The estimates are structured the way real contractors actually price jobs — because the person who built it prices jobs for a living.</p>
+          <p class="founder-sig"><strong>Jacob Fischer</strong> · Founder · Revisions Unlimited LLC</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Pricing ================= -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Pricing</span>
+          <h2>Simple plans. <span class="grad-text">Serious speed.</span></h2>
+          <p>Start with 3 free estimates — no card required. All prices in USD, billed monthly.</p>
+        </div>
+
+        <div class="pricing-grid" data-reveal-group>
+          <div class="price-card" data-reveal>
+            <h3 class="price-name">Solo</h3>
+            <p class="price-for">For independent contractors and handyman services</p>
+            <p class="price-amount">$79<sub>/mo</sub></p>
+            <ul class="price-features">
+              <li>25 estimates per month</li>
+              <li>Photo + video capture</li>
+              <li>Line-item breakdowns — labor, materials, quantities</li>
+              <li>Regional price adjustment</li>
+              <li>Share estimates with clients</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href="#waitlist">Start with Solo</a>
+          </div>
+
+          <div class="price-card price-card--featured" data-reveal>
+            <span class="price-badge">Most popular</span>
+            <h3 class="price-name">Crew</h3>
+            <p class="price-for">For remodeling companies and small GCs</p>
+            <p class="price-amount">$199<sub>/mo</sub></p>
+            <ul class="price-features">
+              <li>Everything in Solo</li>
+              <li>100 estimates per month</li>
+              <li>5 team seats</li>
+              <li>Branded PDF proposals</li>
+              <li>Price-book customization</li>
+            </ul>
+            <a class="btn btn-primary btn-block" href="#waitlist">Start with Crew</a>
+          </div>
+
+          <div class="price-card" data-reveal>
+            <h3 class="price-name">Firm</h3>
+            <p class="price-for">For high-volume firms and insurance teams</p>
+            <p class="price-amount">$499<sub>/mo</sub></p>
+            <ul class="price-features">
+              <li>Everything in Crew</li>
+              <li>Unlimited estimates</li>
+              <li>API access</li>
+              <li>Priority support</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href="#waitlist">Start with Firm</a>
+          </div>
+        </div>
+
+        <p class="pricing-note" data-reveal>Every paid plan includes a <strong>14-day free trial</strong> — and your first <strong>3 estimates are free</strong> before you ever pick a plan. No card required.</p>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">FAQ</span>
+          <h2>Questions, <span class="grad-text">answered</span></h2>
+        </div>
+
+        <div class="faq-list" data-reveal-group>
+          <details class="faq-item" data-reveal>
+            <summary>How accurate are the estimates?</summary>
+            <div class="faq-body">
+              <p>Estimates are structured the way working contractors actually price jobs — itemized labor, materials, and quantities, adjusted to your region. Treat them as a strong, defensible starting point: every line is editable, so you can apply your own rates and job-specific knowledge before anything goes to a client.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-reveal>
+            <summary>What do I need to capture?</summary>
+            <div class="faq-body">
+              <p>A handful of photos covering each wall of the space, plus a short walkthrough video — under a minute is usually plenty. Any modern phone camera works. No laser scanner, measuring hardware, or special app training required.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-reveal>
+            <summary>I'm a homeowner, not a contractor — is RenoBeam for me?</summary>
+            <div class="faq-body">
+              <p>Yes. Homeowners use RenoBeam to get an instant, honest ballpark for a renovation before ever calling a contractor — so you walk into every conversation knowing roughly what the work should cost. Your first 3 estimates are free, no card required.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-reveal>
+            <summary>Does RenoBeam work outside the United States?</summary>
+            <div class="faq-body">
+              <p>RenoBeam is built for a worldwide audience. Regional price adjustment tunes labor and material baselines to your market, and you can override any rate with your own price book. Plans are billed in USD.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-reveal>
+            <summary>Can I edit line items or use my own prices?</summary>
+            <div class="faq-body">
+              <p>Every line item is editable before you send an estimate. On the Crew and Firm plans, price-book customization lets you set your own labor rates and material costs once — and RenoBeam applies them to every estimate after that.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-reveal>
+            <summary>What happens to my photos and videos?</summary>
+            <div class="faq-body">
+              <p>Your captures are used to generate your estimates and stay in your account. They are never sold, and you can delete them at any time. Job-site media is your business data — we treat it that way.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Final CTA / Waitlist ================= -->
+    <section class="section" id="waitlist">
+      <div class="container">
+        <div class="cta-panel" data-reveal>
+          <h2>Your first three estimates are <span class="grad-text">free</span></h2>
+          <p>Join the early-access list and be first in when RenoBeam opens. 3 free estimates to start — no card required.</p>
+
+          <form class="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="waitlist">
+            <p class="hp-field" aria-hidden="true">
+              <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            </p>
+
+            <div class="form-field">
+              <label for="wl-name">Name</label>
+              <input type="text" id="wl-name" name="name" placeholder="Your name" autocomplete="name" required>
+            </div>
+
+            <div class="form-field">
+              <label for="wl-email">Email</label>
+              <input type="email" id="wl-email" name="email" placeholder="you@company.com" autocomplete="email" required>
+            </div>
+
+            <div class="form-field">
+              <label for="wl-role">I am a...</label>
+              <select id="wl-role" name="role" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="Contractor">Contractor</option>
+                <option value="Homeowner">Homeowner</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Join the early-access list</button>
+            <p class="form-privacy">We'll only email you about RenoBeam early access. No spam, unsubscribe anytime.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= Footer ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="#top" aria-label="RenoBeam home">
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="logo-grad-f" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#fbbf24"/>
+                  <stop offset="1" stop-color="#f97316"/>
+                </linearGradient>
+              </defs>
+              <path d="M5 14.5 16 6l11 8.5V27H5Z" stroke="rgba(245,243,239,0.85)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M7 24.5 25 12" stroke="url(#logo-grad-f)" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="25" cy="12" r="2.2" fill="#fbbf24"/>
+            </svg>
+            <span>Reno<span class="logo-beam-word">Beam</span></span>
+          </a>
+          <p>The AI renovation estimator built by a working remodeling contractor. Photos and a short video in — a line-item estimate and client-ready proposal out.</p>
+        </div>
+
+        <nav aria-label="Product">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#use-cases">Who it's for</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Get started">
+          <h4>Get started</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#founder">Why RenoBeam</a></li>
+            <li><a href="#waitlist">Join the waitlist</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 RenoBeam. All rights reserved.</span>
+        <span>Designed &amp; Built by <a href="https://stylemarking.com" rel="noopener">StyleMarking.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
