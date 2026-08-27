@@ -1,0 +1,21 @@
+# RenoBeam
+
+> RenoBeam is an AI renovation estimator for contractors, remodelers, and homeowners. Upload photos and a short walkthrough video of any space, and RenoBeam returns a detailed line-item estimate — labor, materials, quantities, and regional pricing — plus a branded, client-ready PDF proposal, in minutes. It was built by Jacob Fischer, a working remodeling contractor and owner of Revisions Unlimited LLC in Central Minnesota, so estimates are structured the way contractors actually price jobs.
+
+Pricing (USD, billed monthly, 14-day free trial, first 3 estimates free with no card required):
+- Solo — $79/mo: 25 estimates/month, photo + video capture, line-item breakdowns, regional price adjustment
+- Crew — $199/mo: 100 estimates/month, 5 team seats, branded PDF proposals, price-book customization
+- Firm — $499/mo: unlimited estimates, API access, priority support
+
+## Key pages
+
+- [Home](https://renobeam.com/): product overview, features, how it works, pricing, FAQ
+- [Blog](https://renobeam.com/blog/): contractor estimating guides
+- [How to Estimate a Renovation Job from Photos](https://renobeam.com/blog/how-to-estimate-renovation-jobs-from-photos): the photo-scoping method contractors use, and where AI fits
+- [Why Slow Quotes Lose Remodeling Jobs](https://renobeam.com/blog/why-slow-quotes-lose-remodeling-jobs): first-responder advantage in bidding, with worked math
+- [Spreadsheets vs. Takeoff Software vs. AI Estimators](https://renobeam.com/blog/contractor-estimating-spreadsheets-vs-takeoff-software-vs-ai): honest comparison of the three estimating approaches
+- [Service areas](https://renobeam.com/locations/): all 50 US states and 25 major metros, with market-specific pages
+
+## Contact
+
+RenoBeam is in early access. To get in touch or try it (3 free estimates, no card required), join the waitlist form at https://renobeam.com/#waitlist

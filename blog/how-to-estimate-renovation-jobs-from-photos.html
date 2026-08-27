@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0d">
+  <title>How to Estimate a Renovation Job from Photos: A Contractor's Guide</title>
+  <meta name="description" content="A working contractor's method for estimating renovation jobs from photos: capture, reference measurements, trade-ordered line items, waste factors, regional labor rates — and where AI fits.">
+  <link rel="canonical" href="https://renobeam.com/blog/how-to-estimate-renovation-jobs-from-photos">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="RenoBeam">
+  <meta property="og:title" content="How to Estimate a Renovation Job from Photos: A Contractor's Guide">
+  <meta property="og:description" content="The photo-scoping method working contractors use: capture, reference measurements, line items, waste factors, regional labor — and where AI fits.">
+  <meta property="og:url" content="https://renobeam.com/blog/how-to-estimate-renovation-jobs-from-photos">
+  <meta property="og:image" content="https://renobeam.com/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Estimate a Renovation Job from Photos: A Contractor's Guide">
+  <meta name="twitter:description" content="The photo-scoping method working contractors use: capture, reference measurements, line items, waste factors, regional labor — and where AI fits.">
+  <meta name="twitter:image" content="https://renobeam.com/images/og-default.png">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230e0e13'/%3E%3Cpath%20d='M12%2030%2032%2015%2052%2030'%20fill='none'%20stroke='%23f97316'%20stroke-width='5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M12%2048%2052%2024'%20stroke='%23fbbf24'%20stroke-width='5'%20stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .post-hero { padding: calc(var(--nav-h) + 64px) 0 12px; }
+    .post-breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; font-size: .8rem; color: var(--text-faint); margin-bottom: 18px; }
+    .post-breadcrumb a { color: var(--text-muted); text-decoration: none; }
+    .post-breadcrumb a:hover { color: var(--text); }
+    .post-breadcrumb .sep { opacity: .5; }
+    .post-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.1; letter-spacing: -.02em; margin: 14px 0 16px; max-width: 860px; }
+    .post-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: .86rem; color: var(--text-faint); margin-bottom: 6px; }
+    .post-meta strong { color: var(--text-muted); font-weight: 600; }
+    .post-body { max-width: 780px; padding-bottom: 24px; }
+    .post-body p { color: var(--text-muted); margin: 0 0 16px; }
+    .post-body .post-lede { color: var(--text); font-size: 1.06rem; }
+    .post-body h2 { font-family: var(--font-display); font-size: clamp(1.35rem, 2.6vw, 1.7rem); letter-spacing: -.01em; margin: 40px 0 14px; }
+    .post-body h3 { font-family: var(--font-display); font-size: 1.08rem; margin: 26px 0 10px; }
+    .post-body ul, .post-body ol { color: var(--text-muted); margin: 0 0 16px; padding-left: 22px; }
+    .post-body li { margin: 6px 0; }
+    .post-body a { color: var(--amber); text-decoration: none; }
+    .post-body a:hover { text-decoration: underline; }
+    .post-body a.btn { color: inherit; }
+    .post-body a.btn:hover { text-decoration: none; }
+    .table-wrap { overflow-x: auto; margin: 20px 0 24px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+    .table-wrap table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 560px; }
+    .table-wrap th, .table-wrap td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+    .table-wrap th { color: var(--text); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
+    .table-wrap tr:last-child td { border-bottom: none; }
+    .post-cta { border: 1px solid var(--border-strong); background: var(--surface); border-radius: var(--radius-lg); padding: 26px 28px; margin: 34px 0; }
+    .post-cta h3 { margin: 0 0 8px; }
+    .post-cta p { margin: 0 0 16px; }
+    .post-faq { margin-top: 8px; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://renobeam.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://renobeam.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "How to Estimate a Renovation Job from Photos", "item": "https://renobeam.com/blog/how-to-estimate-renovation-jobs-from-photos"}
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": "How to Estimate a Renovation Job from Photos: A Contractor's Guide",
+        "description": "A working contractor's method for estimating renovation jobs from photos: capture, reference measurements, trade-ordered line items, waste factors, regional labor rates — and where AI fits.",
+        "image": "https://renobeam.com/images/og-default.png",
+        "author": {
+          "@type": "Person",
+          "name": "Jacob Fischer",
+          "jobTitle": "Founder, RenoBeam",
+          "description": "Working remodeling contractor and owner of Revisions Unlimited LLC in Central Minnesota."
+        },
+        "publisher": {"@type": "Organization", "name": "RenoBeam", "url": "https://renobeam.com/"},
+        "datePublished": "2026-08-27",
+        "dateModified": "2026-08-27",
+        "mainEntityOfPage": "https://renobeam.com/blog/how-to-estimate-renovation-jobs-from-photos"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can you really estimate a renovation without a site visit?",
+            "acceptedAnswer": {"@type": "Answer", "text": "You can build a solid preliminary estimate from photos and a walkthrough video — good enough to give a client a credible number fast. For anything you'll sign a contract on, verify critical measurements and hidden conditions on site first, and say so in the estimate."}
+          },
+          {
+            "@type": "Question",
+            "name": "What photos do I need to estimate a renovation job?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Every wall straight-on, all four corners, the floor and ceiling, closeups of anything damaged, and the mechanicals — panel, water heater, supply lines, ductwork. Add a slow walkthrough video so nothing between the photos gets missed."}
+          },
+          {
+            "@type": "Question",
+            "name": "How accurate is photo-based estimating?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Accurate enough for scoping and pricing visible work, because reference dimensions like doors and outlets let you measure within a usable tolerance. It cannot see inside walls, so carry allowances or exclusions for hidden conditions like framing damage, wiring, or plumbing surprises."}
+          },
+          {
+            "@type": "Question",
+            "name": "Should I still walk the job before signing a contract?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Yes. Photo estimating changes when the site visit happens, not whether it happens. Send the number first to win the conversation, then confirm scope on site before contract — most contractors make the final walkthrough a stated condition of the bid."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Aurora background -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob aurora-blob--a"></div>
+    <div class="aurora-blob aurora-blob--b"></div>
+    <div class="aurora-blob aurora-blob--c"></div>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="/" aria-label="RenoBeam home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="logo-grad" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fbbf24"/>
+              <stop offset="1" stop-color="#f97316"/>
+            </linearGradient>
+          </defs>
+          <path d="M5 14.5 16 6l11 8.5V27H5Z" stroke="rgba(245,243,239,0.85)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 24.5 25 12" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="25" cy="12" r="2.2" fill="#fbbf24"/>
+        </svg>
+        <span>Reno<span class="logo-beam-word">Beam</span></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#how-it-works">How it works</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/locations/">Locations</a></li>
+        <li><a class="btn btn-primary btn-sm nav-cta" href="/#waitlist">Start free</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="post-hero">
+      <div class="container">
+        <nav class="post-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a><span class="sep">/</span><a href="/blog/">Blog</a><span class="sep">/</span><span>Estimating from photos</span>
+        </nav>
+        <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>Contractor guide</span>
+        <h1>How to estimate a renovation job <span class="grad-text">from photos</span></h1>
+        <p class="post-meta"><strong>Jacob Fischer</strong> · Remodeling contractor, Revisions Unlimited LLC · <time datetime="2026-08-27">August 27, 2026</time></p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 24px;">
+      <div class="container">
+        <article class="post-body">
+          <p class="post-lede">To estimate a renovation job from photos, you need five things: photos of every wall plus a short walkthrough video, reference objects to pull measurements from, a trade-ordered line-item scope, waste factors on materials, and labor rates adjusted to your market. Do those five steps in order and you can put a credible, defensible number in front of a client the same day they call — instead of a week later. Here is the full method I use as a working remodeling contractor, and where AI can honestly take over the tedious parts.</p>
+
+          <h2>Step 1: Capture the space like an estimator, not a photographer</h2>
+          <p>Most bad photo estimates fail at capture, not at math. A client's three angled snapshots of a kitchen are not enough to price it. What you (or the client, if you're pre-qualifying remotely) need to capture:</p>
+          <ul>
+            <li><strong>Every wall, straight-on.</strong> One frame per wall, shot from as far back as the room allows.</li>
+            <li><strong>All four corners.</strong> Corners reveal ceiling height transitions, out-of-plumb walls, and trim conditions.</li>
+            <li><strong>Floor and ceiling.</strong> Transitions, registers, existing damage, fixture locations.</li>
+            <li><strong>Closeups of problems.</strong> Water stains, cracked tile, soft spots, failed caulk — anything that changes scope.</li>
+            <li><strong>The mechanicals.</strong> Panel, water heater, supply lines, drain locations, ductwork. These drive the expensive surprises.</li>
+            <li><strong>A slow walkthrough video.</strong> Under a minute is plenty. Video catches everything the photos missed and shows how spaces connect.</li>
+          </ul>
+          <p>This takes five minutes on site. It is the cheapest insurance in the estimating business.</p>
+
+          <h2>Step 2: Pull measurements from known references</h2>
+          <p>You don't need a laser scanner to measure from photos — you need objects with known dimensions. Standard construction gives you plenty:</p>
+          <ul>
+            <li>An interior door is almost always 80 inches tall. That's your vertical ruler in nearly every room.</li>
+            <li>Ceilings in most post-war American housing run 8 feet, with 9-foot ceilings common in newer builds.</li>
+            <li>Base cabinets run about 36 inches to countertop height; wall tile, outlets, and switches sit at predictable heights.</li>
+            <li>Flooring planks, tile grids, and brick courses give you repeatable units you can count across a wall or floor.</li>
+          </ul>
+          <p>Scale one known dimension, and the rest of the frame becomes measurable by proportion. Cross-check against a second reference before you trust a number, and round conservatively — when a wall reads 11 feet 8 inches, take off at 12. The honest caveat: photo measurement is for scoping and pricing, and every dimension that matters structurally gets verified on site before contract. Put that sentence in your proposals.</p>
+
+          <h2>Step 3: Build the scope as trade-ordered line items</h2>
+          <p>A renovation estimate is a list of small, priceable jobs — not one big number. Write the scope in the order the trades actually hit the site: demo, framing, plumbing and electrical rough-in, drywall, flooring, cabinets and fixtures, paint, trim. Walking the photos in trade order is also how you catch what's missing: if you priced tile but never priced backer board, the trade sequence exposes it.</p>
+          <p>Here's what that structure looks like for a modest hall bathroom:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Line item</th><th>Quantity</th><th>What it covers</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Demo &amp; disposal</td><td>1 room</td><td>Strip to studs where needed, dumpster</td></tr>
+                <tr><td>Cement board, wet wall</td><td>~60 sq ft</td><td>Material + hang</td></tr>
+                <tr><td>Drywall repair &amp; finish</td><td>~180 sq ft</td><td>Patch, tape, skim, sand</td></tr>
+                <tr><td>Tile, tub surround</td><td>~75 sq ft</td><td>Material + set + grout</td></tr>
+                <tr><td>Vanity &amp; top install</td><td>1 unit</td><td>Set, plumb, seal</td></tr>
+                <tr><td>Flooring, LVP</td><td>~40 sq ft</td><td>Material + install + transitions</td></tr>
+                <tr><td>Paint, walls + ceiling</td><td>~220 sq ft</td><td>Two coats over primer</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Every line carries its own quantity and its own price. When the client asks "why is it $14,000?", you have seven small answers instead of one big argument.</p>
+
+          <div class="post-cta">
+            <h3>This is the part RenoBeam automates</h3>
+            <p>Upload the same photos and walkthrough video, and RenoBeam returns the measured quantities and the trade-ordered line items — labor, materials, and regional pricing — in minutes. Your first 3 estimates are free, no card required.</p>
+            <a class="btn btn-primary" href="/#waitlist">Get 3 free estimates</a>
+          </div>
+
+          <h2>Step 4: Price labor and materials separately</h2>
+          <p>Lump-sum lines hide your mistakes from you. If "tile surround — $2,400" turns out wrong, you can't tell whether you blew the material takeoff or the labor hours. Split every line into material cost (quantity × unit price, from suppliers you actually buy from) and labor (your crew's real production rates — how many square feet of tile your tile setter actually sets in a day, not what a national cost book wishes). Over time this builds the most valuable asset in your business: a price book that reflects <em>your</em> numbers. Price a job with it once and the next twenty estimates get faster and more accurate.</p>
+
+          <h2>Step 5: Apply waste factors before you price materials</h2>
+          <p>The takeoff from Step 2 is net quantity. You buy gross. Typical waste allowances contractors carry: roughly 10% on plank flooring and standard tile layouts, more like 15% on diagonal or herringbone patterns and natural stone, around 10% on drywall sheets, and extra on trim when the house has lots of corners and openings. These are working rules of thumb, not gospel — your own job history is the best waste data you'll ever get. The point is that the factor must exist on every material line, because forgetting waste is how a "profitable" job quietly loses its margin at the lumberyard.</p>
+
+          <h2>Step 6: Adjust for your regional labor market</h2>
+          <p>The same bathroom does not cost the same in different markets. Labor rates, material logistics, permit costs, and even climate-driven scope (ice-and-water barriers, seismic strapping, hurricane fastening) move real money. A bid built on national average pricing is wrong almost everywhere — it just varies in which direction. If you bid in more than one metro, keep separate rate sets. RenoBeam's regional price adjustment does this automatically; see how it treats markets like <a href="/locations/minnesota">Minnesota</a>, <a href="/locations/texas">Texas</a>, <a href="/locations/florida">Florida</a>, <a href="/locations/denver-co">Denver</a>, and <a href="/locations/chicago-il">Chicago</a> differently.</p>
+
+          <h2>Where AI fits — and where it doesn't</h2>
+          <p>Everything above is teachable, mechanical work: measure, itemize, multiply, adjust. That is exactly the work AI is good at, and it's the work that eats contractor evenings. An AI estimator like RenoBeam takes the capture from Step 1 and does Steps 2 through 6 in minutes — measured quantities, trade-ordered line items with labor and materials split, regional pricing, and a branded PDF proposal ready to send. <a href="/#pricing">Plans start at $79/month</a>, and every line stays editable.</p>
+          <p>What AI cannot do is see through drywall or take responsibility for your number. Hidden framing damage, dead knob-and-tube circuits, rotten subfloor, code triggers — that's contractor judgment, and it belongs in your allowances and exclusions no matter what tool built the estimate. The honest workflow: let the machine draft, then spend ten minutes applying the judgment only you have. That's still hours faster than doing the whole thing by hand.</p>
+
+          <h2>FAQ: estimating renovations from photos</h2>
+          <div class="faq-list post-faq">
+            <details class="faq-item">
+              <summary>Can you really estimate a renovation without a site visit?</summary>
+              <div class="faq-body">
+                <p>You can build a solid preliminary estimate from photos and a walkthrough video — good enough to give a client a credible number fast. For anything you'll sign a contract on, verify critical measurements and hidden conditions on site first, and say so in the estimate.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>What photos do I need to estimate a renovation job?</summary>
+              <div class="faq-body">
+                <p>Every wall straight-on, all four corners, the floor and ceiling, closeups of anything damaged, and the mechanicals — panel, water heater, supply lines, ductwork. Add a slow walkthrough video so nothing between the photos gets missed.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>How accurate is photo-based estimating?</summary>
+              <div class="faq-body">
+                <p>Accurate enough for scoping and pricing visible work, because reference dimensions like doors and outlets let you measure within a usable tolerance. It can't see inside walls — so carry allowances or exclusions for hidden conditions like framing damage, wiring, or plumbing surprises.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Should I still walk the job before signing a contract?</summary>
+              <div class="faq-body">
+                <p>Yes. Photo estimating changes <em>when</em> the site visit happens, not whether it happens. Send the number first to win the conversation, then confirm scope on site before contract — make the final walkthrough a stated condition of the bid.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <div class="cta-panel" data-reveal>
+          <h2>Photos in. <span class="grad-text">Quote out.</span></h2>
+          <p>RenoBeam turns your job-site photos and walkthrough video into a line-item estimate with a branded, client-ready PDF proposal — in minutes. Built by a working remodeling contractor. First 3 estimates free, no card required.</p>
+          <p><a class="btn btn-primary btn-lg" href="/#waitlist">Get 3 free estimates</a> <a class="btn btn-ghost btn-lg" href="/#pricing">See pricing</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="RenoBeam home">
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="logo-grad-f" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#fbbf24"/>
+                  <stop offset="1" stop-color="#f97316"/>
+                </linearGradient>
+              </defs>
+              <path d="M5 14.5 16 6l11 8.5V27H5Z" stroke="rgba(245,243,239,0.85)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M7 24.5 25 12" stroke="url(#logo-grad-f)" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="25" cy="12" r="2.2" fill="#fbbf24"/>
+            </svg>
+            <span>Reno<span class="logo-beam-word">Beam</span></span>
+          </a>
+          <p>The AI renovation estimator built by a working remodeling contractor. Photos and a short video in — a line-item estimate and client-ready proposal out.</p>
+        </div>
+
+        <nav aria-label="Product">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/#features">Features</a></li>
+            <li><a href="/#how-it-works">How it works</a></li>
+            <li><a href="/#pricing">Pricing</a></li>
+            <li><a href="/locations/">Locations</a></li>
+            <li><a href="/blog/">Blog</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Get started">
+          <h4>Get started</h4>
+          <ul>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/#founder">Why RenoBeam</a></li>
+            <li><a href="/#waitlist">Join the waitlist</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 RenoBeam. All rights reserved.</span>
+        <span>Designed &amp; Built by <a href="https://stylemarking.com" rel="noopener">StyleMarking.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
