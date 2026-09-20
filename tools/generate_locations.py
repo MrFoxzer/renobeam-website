@@ -353,6 +353,26 @@ def pick(name, salt, options):
     return options[hnum(name, salt) % len(options)]
 
 
+# Words whose written first letter is a vowel but whose SOUND is a consonant
+# (or vice versa). "Utah" begins with the consonant glide /j/ -> "a Utah".
+_A_BEFORE_VOWEL_LETTER = {"utah", "european", "one", "once", "uniform", "unit", "user"}
+_AN_BEFORE_CONSONANT_LETTER = {"hour", "honest", "honor", "heir"}
+
+
+def article(word, cap=False):
+    """Return 'a' or 'an' for `word`, chosen by its initial SOUND."""
+    first = word.strip().split()[0].lower().strip("\"'([")
+    if first in _A_BEFORE_VOWEL_LETTER:
+        a = "a"
+    elif first in _AN_BEFORE_CONSONANT_LETTER:
+        a = "an"
+    elif first[:1] in "aeiou":
+        a = "an"
+    else:
+        a = "a"
+    return a.capitalize() if cap else a
+
+
 def oxford(items):
     if len(items) == 1:
         return items[0]
@@ -373,18 +393,18 @@ H1S = [
 ]
 
 METAS = [
-    "AI renovation estimating software for {loc} contractors. Photos and a walkthrough video in — line-item labor, materials, and {loc}-adjusted pricing out. 3 free estimates.",
-    "Quote renovation work in {loc} in minutes. RenoBeam turns phone photos into line-item estimates with regional pricing and branded PDF proposals. Built by a contractor.",
-    "Renovation estimating software priced for the {loc} market. Line-item labor and materials, regional price adjustment, client-ready PDFs. First 3 estimates free.",
-    "Built by a working contractor: RenoBeam turns a {loc} walkthrough video into an itemized renovation estimate with local pricing and a branded proposal PDF.",
+    "AI renovation estimating software for {loc} contractors. Photos and a walkthrough video in — line-item labor, materials, and {loc}-adjusted pricing out. In development.",
+    "Quote renovation work in {loc} in minutes. RenoBeam will turn phone photos into line-item estimates with regional pricing and branded PDF proposals. Pre-launch.",
+    "Renovation estimating software planned for the {loc} market. Line-item labor and materials, regional price adjustment, client-ready PDFs. Join the early-access list.",
+    "Built by a working contractor: RenoBeam will turn {art} {loc} walkthrough video into an itemized renovation estimate with local pricing and a branded proposal PDF.",
 ]
 
 INTRO_A = [
-    "RenoBeam turns a phone walkthrough into a line-item renovation estimate priced for {loc}. Upload photos and a short video of any space and get labor, materials, and quantities back in minutes — adjusted to {market} pricing — plus a branded, client-ready PDF proposal.",
-    "Upload photos and a short walkthrough video of any space in {loc}, and RenoBeam returns a full line-item estimate — labor, materials, and quantities, adjusted to {market} pricing — plus a branded PDF proposal you can send the same day.",
-    "In {loc}, the contractor who quotes first usually wins the job. RenoBeam turns phone photos and a short walkthrough video into a line-item estimate — labor, materials, quantities, {market} pricing — and a branded PDF proposal, in minutes.",
-    "Estimating eats evenings. RenoBeam gives them back to {loc} contractors: photos and a short walkthrough video go in, and a line-item estimate — labor, materials, quantities, priced for the {market2} — comes out, with a client-ready branded PDF attached.",
-    "RenoBeam is an AI renovation estimator built by a working remodeling contractor — and built to price work the way {loc} contractors actually bid it. Photos and a short video in; itemized labor, materials, and {market} pricing out, with a branded PDF proposal ready to send.",
+    "RenoBeam will turn a phone walkthrough into a line-item renovation estimate priced for {loc}. Upload photos and a short video of any space, and you get labor, materials, and quantities back in minutes — adjusted to {market} pricing — plus a branded, client-ready PDF proposal.",
+    "Upload photos and a short walkthrough video of any space in {loc}, and RenoBeam will return a full line-item estimate — labor, materials, and quantities, adjusted to {market} pricing — plus a branded PDF proposal you can send the same day. That is the product we are building — it is not open yet.",
+    "In {loc}, the contractor who quotes first usually wins the job. RenoBeam is being built to turn phone photos and a short walkthrough video into a line-item estimate — labor, materials, quantities, {market} pricing — and a branded PDF proposal, in minutes.",
+    "Estimating eats evenings. RenoBeam is being built to give them back to {loc} contractors: photos and a short walkthrough video go in, and a line-item estimate — labor, materials, quantities, priced for the {market2} — comes out, with a client-ready branded PDF attached.",
+    "RenoBeam is an AI renovation estimator in development, built by a working remodeling contractor — and built to price work the way {loc} contractors actually bid it. Photos and a short video in; itemized labor, materials, and {market} pricing out, with a branded PDF proposal ready to send.",
 ]
 
 INTRO_B = [
@@ -402,21 +422,21 @@ WHY_HEADS = [
 ]
 
 WHY_STATE = [
-    "<p>{name} renovation work runs the gamut: {stock}. Add {climate}, and pricing a job here means knowing what the local market actually bears — not what a national average says it should. RenoBeam's regional pricing engine adjusts labor and material baselines to your {name} market, whether you're bidding in {c0}, {c1}, or {c2}.</p><p>And because RenoBeam is a cloud product, there's no office to visit and nothing to install. It works wherever you and your phone do — {clist}, and every town between them. Capture the space on site, and the estimate is waiting before you're back at the truck.</p>",
-    "<p>From {c0} to {c1} to {c2}, {name} contractors deal with {stock} — and with {climate}. That mix punishes lazy estimates. A bid that ignores what {name} labor and materials really cost either leaves money on the table or loses the job. RenoBeam adjusts every baseline to your market, then lets you override any line with your own rates.</p><p>There's no local office to visit, because there doesn't need to be one: RenoBeam is available everywhere in {name} the moment you sign up. If your phone gets a signal on the job site — or even if it doesn't until you're back in coverage — your walkthrough becomes an estimate in minutes.</p>",
-    "<p>What makes {name} estimating hard isn't the math — it's the variety. The housing stock spans {stock}, the weather brings {climate}, and prices in {c0} don't match prices in {c3}. RenoBeam handles the variety for you: regional price adjustment tunes labor and material baselines to the market you're actually standing in, and your own price book overrides win every time.</p><p>RenoBeam is available across all of {name} as a cloud product — {clist} and everywhere in between — with nothing to install and no hardware beyond the phone already in your pocket.</p>",
-    "<p>Ask anyone bidding work in {c0}, {c1}, or {c2}: {name} jobs come with their own conditions. {climate_cap} shape what gets rebuilt and when, and the stock itself — {stock} — means no two walkthroughs look alike. RenoBeam was built by a working remodeling contractor who prices exactly this kind of variety for a living, and its estimates are structured the way real bids are.</p><p>Because it's cloud software, RenoBeam covers every corner of {name} from day one. No territory limits, no installs — just capture, upload, and send the proposal.</p>",
+    "<p>{name} renovation work runs the gamut: {stock}. Add {climate}, and pricing a job here means knowing what the local market actually bears — not what a national average says it should. RenoBeam's regional pricing engine adjusts labor and material baselines to your {name} market, whether you're bidding in {c0}, {c1}, or {c2}.</p><p>And because RenoBeam is a cloud product, there will be no office to visit and nothing to install. It is designed to work wherever you and your phone do — {clist}, and every town between them: capture the space on site, and the estimate is waiting before you're back at the truck.</p>",
+    "<p>From {c0} to {c1} to {c2}, {name} contractors deal with {stock} — and with {climate}. That mix punishes lazy estimates. A bid that ignores what {name} labor and materials really cost either leaves money on the table or loses the job. RenoBeam adjusts every baseline to your market, then lets you override any line with your own rates.</p><p>There will be no local office to visit, because there doesn't need to be one: at launch, RenoBeam will be available everywhere in {name} the moment you sign up. If your phone gets a signal on the job site — or even if it doesn't until you're back in coverage — your walkthrough becomes an estimate in minutes.</p>",
+    "<p>What makes {name} estimating hard isn't the math — it's the variety. The housing stock spans {stock}, the weather brings {climate}, and prices in {c0} don't match prices in {c3}. RenoBeam handles the variety for you: regional price adjustment tunes labor and material baselines to the market you're actually standing in, and your own price book overrides win every time.</p><p>RenoBeam will launch across all of {name} as a cloud product — {clist} and everywhere in between — with nothing to install and no hardware beyond the phone already in your pocket.</p>",
+    "<p>Ask anyone bidding work in {c0}, {c1}, or {c2}: {name} jobs come with their own conditions. {climate_cap} shape what gets rebuilt and when, and the stock itself — {stock} — means no two walkthroughs look alike. RenoBeam was built by a working remodeling contractor who prices exactly this kind of variety for a living, and its estimates are structured the way real bids are.</p><p>Because it's cloud software, RenoBeam will cover every corner of {name} from day one. No territory limits, no installs — just capture, upload, and send the proposal.</p>",
 ]
 
 WHY_CITY = [
-    "<p>{name} is not a generic market: {color}. Bidding here means knowing what {name} labor and materials actually run, and RenoBeam's regional pricing engine adjusts every baseline to match — then lets your own price book override any number. From {h0} to {h1} to {h2}, the estimate fits the neighborhood you're standing in.</p><p>RenoBeam is a cloud product available everywhere crews work in {full} — no office to visit, nothing to install. Capture the space with your phone, and the line-item estimate is ready before you've pulled away from the curb.</p>",
-    "<p>Work in {name} long enough and you learn the market has a personality: {color}. A national-average estimate doesn't survive contact with that reality. RenoBeam prices to the {name} market, itemizes labor and materials with quantities, and turns it all into a branded proposal — whether the job is in {h0}, {h1}, or out toward {h4}.</p><p>And because RenoBeam is cloud software, it covers every {name} zip code from day one. There's no local franchise and no territory map — just your phone, your walkthrough, and an estimate in minutes.</p>",
-    "<p>The {name} renovation scene is defined by {color}. That's exactly the kind of market where itemized, locally priced estimates win: clients here see plenty of bids, and the vague lump-sum quote is the first one in the trash. RenoBeam breaks every job into the line items {name} contractors actually price — from a kitchen in {h0} to a bath in {h2} to a full-gut in {h3}.</p><p>It's a cloud product, available across {full} and its suburbs with nothing to install. Walk the space, upload the capture, send the proposal — often before your competitor has booked their site visit.</p>",
-    "<p>Every {name} contractor knows the stock: {color}. Pricing that work takes local awareness, and that's what RenoBeam's regional adjustment delivers — labor and material baselines tuned to the {name} market, with your own price book layered on top. Jobs in {h0}, {h1}, {h2}, and {h3} each get priced like the distinct work they are.</p><p>RenoBeam is available throughout {full} as a cloud product — no office, no hardware, no waiting list by territory. If you can walk the space with a phone, you can bid it the same afternoon.</p>",
+    "<p>{name} is not a generic market: {color}. Bidding here means knowing what {name} labor and materials actually run, and RenoBeam's regional pricing engine adjusts every baseline to match — then lets your own price book override any number. From {h0} to {h1} to {h2}, the estimate fits the neighborhood you're standing in.</p><p>RenoBeam is a cloud product, so at launch it will be available everywhere crews work in {full} — no office to visit, nothing to install. Capture the space with your phone, and the line-item estimate is ready before you've pulled away from the curb.</p>",
+    "<p>Work in {name} long enough and you learn the market has a personality: {color}. A national-average estimate doesn't survive contact with that reality. RenoBeam prices to the {name} market, itemizes labor and materials with quantities, and turns it all into a branded proposal — whether the job is in {h0}, {h1}, or out toward {h4}.</p><p>And because RenoBeam is cloud software, it will cover every {name} zip code from day one. There's no local franchise and no territory map — just your phone, your walkthrough, and an estimate in minutes.</p>",
+    "<p>The {name} renovation scene is defined by {color}. That's exactly the kind of market where itemized, locally priced estimates win: clients here see plenty of bids, and the vague lump-sum quote is the first one in the trash. RenoBeam breaks every job into the line items {name} contractors actually price — from a kitchen in {h0} to a bath in {h2} to a full-gut in {h3}.</p><p>It's a cloud product that will launch across {full} and its suburbs with nothing to install. Walk the space, upload the capture, send the proposal — often before your competitor has booked their site visit.</p>",
+    "<p>Every {name} contractor knows the stock: {color}. Pricing that work takes local awareness, and that's what RenoBeam's regional adjustment delivers — labor and material baselines tuned to the {name} market, with your own price book layered on top. Jobs in {h0}, {h1}, {h2}, and {h3} each get priced like the distinct work they are.</p><p>RenoBeam will be available throughout {full} as a cloud product — no office, no hardware, no waiting list by territory. If you can walk the space with a phone, you can bid it the same afternoon.</p>",
 ]
 
 FEAT_HEADS = [
-    "What RenoBeam does on a {loc} job site",
+    "What RenoBeam will do on {art} {loc} job site",
     "Features that earn their keep in {loc}",
     "Built for how {loc} bids get won",
     "The RenoBeam toolkit, put to work in {loc}",
@@ -435,7 +455,7 @@ FEATURES = [
         "No hardware to buy: photos plus a short video from the phone already in your pocket is all the input RenoBeam needs.",
     ]),
     ("Line items, not lump sums", [
-        "Labor, materials, and quantities itemized for every scope — demo, framing, drywall, flooring, paint, electrical — so you can defend every number a {loc} client questions.",
+        "Labor, materials, and quantities itemized for every scope — demo, framing, drywall, flooring, paint, electrical — so you can defend every number {art} {loc} client questions.",
         "Estimates arrive broken into the line items real contractors price: labor and materials, separated, with quantities — a bid you can defend in any {loc} living room.",
         "No vague totals. Every scope is itemized with labor, materials, and quantities, structured the way working {loc} contractors actually build a bid.",
     ]),
@@ -450,13 +470,13 @@ FEATURES = [
         "RenoBeam learns your rates: override any line once and your price book carries into every future bid you send in {loc}.",
     ]),
     ("Takeoffs measured for you", [
-        "Square footage, linear footage, and unit counts pulled straight from your capture — the takeoff work that normally eats a {loc} contractor's evenings.",
+        "Square footage, linear footage, and unit counts pulled straight from your capture — the takeoff work that normally eats {art} {loc} contractor's evenings.",
         "Quantities come measured from the walkthrough itself: square feet of drywall, linear feet of trim, unit counts — no tape-measure evenings.",
         "The measuring is done for you — areas, lengths, and counts extracted from your photos and video, ready to price.",
     ]),
     ("Built for crews", [
         "Team seats on the Crew plan let a lead carpenter capture a space {pair} and fire off the estimate — without you on site.",
-        "With team seats, your PM or lead can walk a {loc} job and send the estimate while you're bidding the next one.",
+        "With team seats, your PM or lead will be able to walk {art} {loc} job and send the estimate while you're bidding the next one.",
         "Five seats on the Crew plan mean whoever is closest walks the space — and the estimate still goes out under your brand.",
     ]),
     ("API access", [
@@ -467,37 +487,37 @@ FEATURES = [
 ]
 
 PRICE_HEADS = [
-    "RenoBeam pricing for {loc} pros",
-    "Plans that pay for themselves on one {loc} bid",
-    "Simple pricing, wherever in {loc} you work",
-    "Pick a plan, start quoting {loc} jobs",
+    "Planned pricing for {loc} pros",
+    "Planned plans, built to pay for themselves on one {loc} bid",
+    "Planned pricing, wherever in {loc} you work",
+    "The plans we intend to launch with in {loc}",
 ]
 
 PRICE_INTROS = [
-    "Three plans, billed monthly in USD — and your first 3 estimates are free before you ever pick one. No card required.",
-    "Start with 3 free estimates, no card required. When you're ready, every paid plan comes with a 14-day free trial.",
-    "Every plan starts the same way: 3 free estimates, no card. Paid plans add volume, seats, and branding — each with a 14-day free trial.",
-    "No card, no commitment to start — your first 3 estimates are free. Paid plans below are billed monthly in USD.",
+    "These are the three plans RenoBeam intends to launch with, billed monthly in USD. Nothing is for sale yet — join the early-access list and we'll email you when it is.",
+    "Planned pricing at launch, billed monthly in USD. There is no checkout on this site today; the waitlist is the only way in right now.",
+    "Here is the pricing we plan to open with: volume, seats, and branding, billed monthly in USD. Figures may change before launch.",
+    "Planned pricing, in USD per month. No accounts, no checkout, and no card are involved yet — just the early-access list.",
 ]
 
 CTA_HEADS = [
     'Your next {loc} bid, <span class="grad-text">done in minutes</span>',
     'Quote your next {loc} job <span class="grad-text">before you leave the driveway</span>',
-    'Three free estimates. <span class="grad-text">Zero risk.</span>',
+    'Get early access. <span class="grad-text">Zero risk.</span>',
     'Stop typing bids at midnight, <span class="grad-text">{loc}</span>',
 ]
 
 CTA_BODIES = [
-    "Join the early-access list and be first in when RenoBeam opens in {loc}. Your first 3 estimates are free — no card required.",
-    "Get on the early-access list today: 3 free estimates to put RenoBeam through its paces on real {loc} work, no card required.",
-    "Early access is rolling out now. Sign up, get 3 free estimates, and see what a {loc} walkthrough looks like as a finished proposal.",
-    "Put your name on the list and test RenoBeam on an actual {loc} job — 3 free estimates, no card, no strings.",
+    "Join the early-access list and be first in when RenoBeam opens in {loc}. No account, no card, no charge — just your place in line.",
+    "Get on the early-access list today. We'll email you as soon as RenoBeam is live in {loc} — nothing to pay and nothing to install.",
+    "Early access is forming now. Sign up, and you'll be among the first to see a walkthrough in {loc} turn into a finished proposal.",
+    "Put your name on the list and we'll tell you the moment you can test RenoBeam on real work in {loc}. No card, no strings.",
 ]
 
 HOW_HEADS = [
     "From {loc} walkthrough to winning bid",
     "Three steps between you and the signed {loc} job",
-    "How a {loc} estimate comes together",
+    "How {art} {loc} estimate will come together",
     "Walk it, beam it, send it — {loc} edition",
 ]
 
@@ -508,7 +528,7 @@ HOW_STEPS = [
     [("Walk it with your phone", "A few photos and a quick walkthrough video are the whole capture. No scanner, no clipboard, no return trip to measure."),
      ("Let RenoBeam price it", "Measurements, quantities, labor, and materials come back itemized and adjusted to the {market2} — every line editable before it ships."),
      ("Win the job", "One tap produces a branded PDF proposal. While competitors schedule their second site visit, your number is already in the client's inbox.")],
-    [("Shoot the space", "Photos of each wall and a short video from any phone. If your crew can text, they can capture a {loc} job for you."),
+    [("Shoot the space", "Photos of each wall and a short video from any phone. If your crew can text, they will be able to capture {art} {loc} job for you."),
      ("Review the line items", "RenoBeam returns labor, materials, and quantities priced for the {market2}. Adjust anything — your price book always wins."),
      ("Fire off the proposal", "A branded, client-ready PDF with your terms goes out the same day. Estimating stops being the bottleneck.")],
     [("Capture on site", "Walk the space once, phone in hand — wall photos plus a sub-minute video. That's the entire input."),
@@ -519,11 +539,12 @@ HOW_STEPS = [
 
 def how_html(loc, market2, key=None):
     key = key or loc
-    head = pick(key, "howhead", HOW_HEADS).format(loc=loc)
+    art = article(loc)
+    head = pick(key, "howhead", HOW_HEADS).format(loc=loc, art=art)
     steps = pick(key, "howsteps", HOW_STEPS)
     cells = []
     for i, (t, b) in enumerate(steps, 1):
-        body = b.format(loc=loc, market2=market2)
+        body = b.format(loc=loc, market2=market2, art=art)
         cells.append(f"""          <div class="step" data-reveal>
             <span class="step-num">Step 0{i}</span>
             <h3>{t}</h3>
@@ -533,7 +554,7 @@ def how_html(loc, market2, key=None):
     return f"""    <section class="section">
       <div class="container">
         <div class="section-head" data-reveal>
-          <span class="eyebrow">How it works</span>
+          <span class="eyebrow">How it will work</span>
           <h2>{head}</h2>
         </div>
         <div class="steps" data-reveal-group>
@@ -586,6 +607,20 @@ FAVICON = ("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20vie
            "%20stroke='%23fbbf24'%20stroke-width='5'%20stroke-linecap='round'/%3E%3C/svg%3E")
 
 
+ANALYTICS = """  <!-- Analytics: paste your GA4 Measurement ID below to activate. Until then this is a no-op. -->
+  <script>window.GA_ID="G-XXXXXXXXXX";if(window.GA_ID&&!/^G-X+$/.test(window.GA_ID)){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+window.GA_ID;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',window.GA_ID);}</script>
+"""
+
+# Shared pre-launch disclosure. RenoBeam has no signup, checkout or upload yet;
+# every page says so in the same words.
+PRELAUNCH_NOTE = ('        <p class="prelaunch-note"><strong>Pre-launch:</strong> RenoBeam is still in '
+                  'development. There is no sign-up, checkout, or photo upload yet \u2014 the waitlist is the '
+                  'only way in, and everything below describes what we are building. '
+                  '<a href="/#waitlist">Join the waitlist</a></p>\n')
+
+SUPPORT_EMAIL = "leads@stylemarking.com"
+
+
 def logo_svg(grad_id):
     return f"""<svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
           <defs>
@@ -628,7 +663,7 @@ def nav_html():
         <li><a href="/#pricing">Pricing</a></li>
         <li><a href="/locations/">Locations</a></li>
         <li><a href="/#faq">FAQ</a></li>
-        <li><a class="btn btn-primary btn-sm nav-cta" href="/#waitlist">Start free</a></li>
+        <li><a class="btn btn-primary btn-sm nav-cta" href="/#waitlist">Join the waitlist</a></li>
       </ul>
     </div>
   </header>
@@ -664,6 +699,9 @@ def footer_html(include_blog=False):
             <li><a href="/#faq">FAQ</a></li>
             <li><a href="/#founder">Why RenoBeam</a></li>
             <li><a href="/#waitlist">Join the waitlist</a></li>
+            <li><a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href="/terms">Terms</a></li>
           </ul>
         </nav>
       </div>
@@ -713,6 +751,7 @@ def head_html(title, meta, canonical, jsonld):
   <link rel="stylesheet" href="../css/style.css">
   <style>{LOC_CSS}  </style>
 
+{ANALYTICS}
   <script type="application/ld+json">
 {jsonld}
   </script>
@@ -761,7 +800,7 @@ def pricing_html(loc, key=None):
     return f"""    <section class="section" id="plans">
       <div class="container">
         <div class="section-head" data-reveal>
-          <span class="eyebrow">Pricing</span>
+          <span class="eyebrow">Planned pricing at launch</span>
           <h2>{head}</h2>
           <p>{intro}</p>
         </div>
@@ -775,7 +814,7 @@ def pricing_html(loc, key=None):
               <li>Photo + video capture</li>
               <li>Line-item breakdowns with regional pricing</li>
             </ul>
-            <a class="btn btn-ghost btn-block" href="/#waitlist">Start with Solo</a>
+            <a class="btn btn-ghost btn-block" href="/#waitlist">Join the waitlist</a>
           </div>
           <div class="price-card price-card--featured" data-reveal>
             <span class="price-badge">Most popular</span>
@@ -787,7 +826,7 @@ def pricing_html(loc, key=None):
               <li>Branded PDF proposals</li>
               <li>Price-book customization</li>
             </ul>
-            <a class="btn btn-primary btn-block" href="/#waitlist">Start with Crew</a>
+            <a class="btn btn-primary btn-block" href="/#waitlist">Join the waitlist</a>
           </div>
           <div class="price-card" data-reveal>
             <h3 class="price-name">Firm</h3>
@@ -798,7 +837,7 @@ def pricing_html(loc, key=None):
               <li>API access</li>
               <li>Priority support</li>
             </ul>
-            <a class="btn btn-ghost btn-block" href="/#waitlist">Start with Firm</a>
+            <a class="btn btn-ghost btn-block" href="/#waitlist">Join the waitlist</a>
           </div>
         </div>
       </div>
@@ -815,7 +854,7 @@ def cta_html(loc, key=None):
         <div class="cta-panel" data-reveal>
           <h2>{head}</h2>
           <p>{body}</p>
-          <p><a class="btn btn-primary btn-lg" href="/#waitlist">Get 3 free estimates</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/#waitlist">Join the waitlist</a></p>
         </div>
       </div>
     </section>
@@ -827,10 +866,12 @@ def features_html(loc, market2, pair, key=None):
     key = key or loc
     start = hnum(key, "fstart") % len(FEATURES)
     chosen = [FEATURES[(start + i) % len(FEATURES)] for i in range(6)]
-    head = pick(key, "fhead", FEAT_HEADS).format(loc=loc)
+    art = article(loc)
+    head = pick(key, "fhead", FEAT_HEADS).format(loc=loc, art=art)
     cells = []
     for i, (title, bodies) in enumerate(chosen):
-        body = bodies[hnum(key, "fbody" + str(i)) % len(bodies)].format(loc=loc, market2=market2, pair=pair)
+        body = bodies[hnum(key, "fbody" + str(i)) % len(bodies)].format(
+            loc=loc, market2=market2, pair=pair, art=art)
         wide = ' bento-cell--wide' if i == 0 else ''
         cells.append(f"""          <div class="bento-cell{wide}" data-reveal>
             <h3>{title}</h3>
@@ -893,7 +934,7 @@ def build_state_page(st):
     slug = state_slug(name)
     canonical = f"{SITE}/locations/{slug}"
     title = f"Renovation Estimating Software in {name} — RenoBeam"
-    meta = pick(name, "meta", METAS).format(loc=name)
+    meta = pick(name, "meta", METAS).format(loc=name, art=article(name))
     area = {"@type": "State", "name": name}
     jsonld = jsonld_for(name, slug, meta, area)
 
@@ -923,12 +964,13 @@ def build_state_page(st):
     body = f"""  <main id="main">
     <section class="loc-hero">
       <div class="container">
-{breadcrumb_html(name)}        <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>Available across {name}</span>
+{breadcrumb_html(name)}        <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>Coming soon to {name}</span>
         <h1>{h1}</h1>
         <div class="loc-intro">
           <p>{intro_a}</p>
           <p>{intro_b}</p>
         </div>
+{PRELAUNCH_NOTE}
       </div>
     </section>
 
@@ -959,7 +1001,7 @@ def build_city_page(ct):
     slug = city_slug(ct)
     canonical = f"{SITE}/locations/{slug}"
     title = f"Renovation Estimating Software in {full} — RenoBeam"
-    meta = pick(full, "meta", METAS).format(loc=name)
+    meta = pick(full, "meta", METAS).format(loc=name, art=article(name))
     area = {"@type": "City", "name": name,
             "containedInPlace": {"@type": "State", "name": ct["state"]}}
     jsonld = jsonld_for(full, slug, meta, area)
@@ -992,12 +1034,13 @@ def build_city_page(ct):
     body = f"""  <main id="main">
     <section class="loc-hero">
       <div class="container">
-{breadcrumb_html(full)}        <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>Available in {full}</span>
+{breadcrumb_html(full)}        <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>Coming soon to {full}</span>
         <h1>{h1}</h1>
         <div class="loc-intro">
           <p>{intro_a}</p>
           <p>{intro_b}</p>
         </div>
+{PRELAUNCH_NOTE}
       </div>
     </section>
 
@@ -1024,8 +1067,8 @@ def build_city_page(ct):
 
 def build_hub_page():
     title = "RenoBeam Service Areas — Renovation Estimating Software by Location"
-    meta = ("Find RenoBeam in your market: AI renovation estimating software with regional pricing, available in all "
-            "50 states and every major US metro. 3 free estimates, no card required.")
+    meta = ("Find RenoBeam in your market: AI renovation estimating software with regional pricing, planned for all "
+            "50 states and every major US metro. Pre-launch — join the early-access list.")
     canonical = f"{SITE}/locations/"
     data = {
         "@context": "https://schema.org",
@@ -1071,12 +1114,13 @@ def build_hub_page():
         <nav class="loc-breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a><span class="sep">/</span><span>Locations</span>
         </nav>
-        <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>Available nationwide</span>
+        <span class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span>Launching nationwide</span>
         <h1>Renovation estimating software, <span class="grad-text">priced for your market</span></h1>
         <div class="loc-intro">
-          <p>RenoBeam is a cloud product — it works wherever you and your phone do. But renovation pricing is local, and so is the way we talk about it. Pick your state or metro below to see how RenoBeam's regional price adjustment, line-item estimates, and branded PDF proposals fit the market you actually bid in.</p>
-          <p>Every market starts the same way: 3 free estimates, no card required.</p>
+          <p>RenoBeam is a cloud product — at launch it will work wherever you and your phone do. But renovation pricing is local, and so is the way we talk about it. Pick your state or metro below to see how RenoBeam's regional price adjustment, line-item estimates, and branded PDF proposals are being built to fit the market you actually bid in.</p>
+          <p>Every market starts the same way: join the early-access list, and we'll email you when RenoBeam opens there.</p>
         </div>
+{PRELAUNCH_NOTE}
       </div>
     </section>
 
@@ -1118,6 +1162,7 @@ def build_hub_page():
 def build_sitemap(slugs):
     urls = ([SITE + "/", SITE + "/blog/"]
             + [SITE + "/blog/" + s for s in BLOG_POSTS]
+            + [SITE + "/privacy", SITE + "/terms"]
             + [SITE + "/locations/"]
             + [SITE + "/locations/" + s for s in slugs])
     entries = "\n".join(

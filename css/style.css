@@ -1254,6 +1254,44 @@ section { scroll-margin-top: calc(var(--nav-h) + 16px); }
 .footer-bottom a:hover { color: var(--amber); }
 
 /* --------------------------------------------------------------------------
+   Pre-launch disclosure + legal pages
+   -------------------------------------------------------------------------- */
+
+.prelaunch-note {
+  max-width: 720px;
+  margin: 20px 0 0;
+  padding: 13px 18px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--amber);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.prelaunch-note strong { color: var(--amber); font-weight: 600; }
+
+.prelaunch-note a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.prelaunch-note a:hover { color: var(--amber); }
+
+.legal-disclaimer {
+  margin: 28px 0 0;
+  padding: 13px 18px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 12px;
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
    Scroll reveal
    -------------------------------------------------------------------------- */
 

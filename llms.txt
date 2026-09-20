@@ -1,8 +1,8 @@
 # RenoBeam
 
-> RenoBeam is an AI renovation estimator for contractors, remodelers, and homeowners. Upload photos and a short walkthrough video of any space, and RenoBeam returns a detailed line-item estimate — labor, materials, quantities, and regional pricing — plus a branded, client-ready PDF proposal, in minutes. It was built by Jacob Fischer, a working remodeling contractor and owner of Revisions Unlimited LLC in Central Minnesota, so estimates are structured the way contractors actually price jobs.
+> RenoBeam is an AI renovation estimator IN DEVELOPMENT, for contractors, remodelers, and homeowners. It has not launched: there is no sign-up, checkout, or photo upload, and the website is a waitlist only. Once built, you will upload photos and a short walkthrough video of any space and RenoBeam will return a detailed line-item estimate — labor, materials, quantities, and regional pricing — plus a branded, client-ready PDF proposal, in minutes. It was built by Jacob Fischer, a working remodeling contractor and owner of Revisions Unlimited LLC in Central Minnesota, so estimates are structured the way contractors actually price jobs.
 
-Pricing (USD, billed monthly, 14-day free trial, first 3 estimates free with no card required):
+Planned pricing at launch (USD, billed monthly). Nothing is for sale yet — there is no checkout, no free trial, and no free-estimate offer on the site:
 - Solo — $79/mo: 25 estimates/month, photo + video capture, line-item breakdowns, regional price adjustment
 - Crew — $199/mo: 100 estimates/month, 5 team seats, branded PDF proposals, price-book customization
 - Firm — $499/mo: unlimited estimates, API access, priority support
@@ -15,7 +15,9 @@ Pricing (USD, billed monthly, 14-day free trial, first 3 estimates free with no 
 - [Why Slow Quotes Lose Remodeling Jobs](https://renobeam.com/blog/why-slow-quotes-lose-remodeling-jobs): first-responder advantage in bidding, with worked math
 - [Spreadsheets vs. Takeoff Software vs. AI Estimators](https://renobeam.com/blog/contractor-estimating-spreadsheets-vs-takeoff-software-vs-ai): honest comparison of the three estimating approaches
 - [Service areas](https://renobeam.com/locations/): all 50 US states and 25 major metros, with market-specific pages
+- [Privacy policy](https://renobeam.com/privacy): what the waitlist form collects and where it goes
+- [Terms of use](https://renobeam.com/terms): terms for the pre-launch website
 
 ## Contact
 
-RenoBeam is in early access. To get in touch or try it (3 free estimates, no card required), join the waitlist form at https://renobeam.com/#waitlist
+RenoBeam is pre-launch. Email leads@stylemarking.com, or join the early-access waitlist form at https://renobeam.com/#waitlist
