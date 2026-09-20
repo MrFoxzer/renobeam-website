@@ -353,6 +353,26 @@ def pick(name, salt, options):
     return options[hnum(name, salt) % len(options)]
 
 
+def fit_pick(name, salt, options, lo, hi):
+    """Deterministically pick a rendered string whose length lands in [lo, hi].
+
+    Location names differ in length by 12+ characters, so a single fixed
+    template cannot keep every page inside Google's snippet window. Callers
+    hand in a pool of already-rendered candidates; we keep the ones that fit
+    and hash-select from those, so pages stay varied, regenerable, and unique
+    (every candidate embeds the location name).
+    """
+    ok = [o for o in options if lo <= len(o) <= hi]
+    if ok:
+        return pick(name, salt, ok)
+    under = [o for o in options if len(o) <= hi]
+    if under:
+        best = max(len(o) for o in under)
+        return pick(name, salt, [o for o in under if len(o) == best])
+    best = min(len(o) for o in options)
+    return pick(name, salt, [o for o in options if len(o) == best])
+
+
 # Words whose written first letter is a vowel but whose SOUND is a consonant
 # (or vice versa). "Utah" begins with the consonant glide /j/ -> "a Utah".
 _A_BEFORE_VOWEL_LETTER = {"utah", "european", "one", "once", "uniform", "unit", "user"}
@@ -392,12 +412,54 @@ H1S = [
     'Price renovation work in <span class="grad-text">{loc}</span> in minutes',
 ]
 
+# Search snippets: titles are held to 50-60 chars and descriptions to
+# 140-155 so Google never truncates them mid-sentence. Location names vary
+# by 12+ characters, so each pool spans a range of lengths and fit_pick()
+# selects a variant that lands in the window for that specific location.
+TITLE_CONCEPTS = ["Renovation Estimating Software", "AI Renovation Estimating Software",
+                  "AI Renovation Estimator", "Renovation Estimating App",
+                  "Contractor Estimating Software", "AI Estimating Software"]
+
+TITLE_TAGS = ["Photos In, Quote Out", "Quote in Minutes", "Photos to Estimate",
+              "Line-Item Estimates", "Estimate from Photos", "Built by a Contractor"]
+
+TITLE_MIN, TITLE_MAX = 50, 60
+DESC_MIN, DESC_MAX = 140, 155
+
+
+def title_candidates(loc):
+    """Every candidate embeds `loc`, so titles stay unique across pages."""
+    out = []
+    for concept in TITLE_CONCEPTS:
+        out.append(f"{concept} in {loc} | RenoBeam")
+        out.append(f"{concept} for Contractors in {loc} | RenoBeam")
+        for tag in TITLE_TAGS:
+            out.append(f"{concept} in {loc} — {tag} | RenoBeam")
+    return out
+
+
 METAS = [
-    "AI renovation estimating software for {loc} contractors. Photos and a walkthrough video in — line-item labor, materials, and {loc}-adjusted pricing out. In development.",
-    "Quote renovation work in {loc} in minutes. RenoBeam will turn phone photos into line-item estimates with regional pricing and branded PDF proposals. Pre-launch.",
-    "Renovation estimating software planned for the {loc} market. Line-item labor and materials, regional price adjustment, client-ready PDFs. Join the early-access list.",
-    "Built by a working contractor: RenoBeam will turn {art} {loc} walkthrough video into an itemized renovation estimate with local pricing and a branded proposal PDF.",
+    "Photos in, line-item renovation estimate out, priced for the {loc} market. RenoBeam is in development — join the early-access list.",
+    "Renovation estimating software for {loc} contractors: photos in, itemized labor, materials and quantities out. Join the early list.",
+    "Price {loc} renovation jobs from phone photos: line-item labor, materials, local rates and a branded PDF proposal. Now pre-launch.",
+    "Estimate {loc} renovation work from photos and a short walkthrough video: line items, local pricing, branded PDF. In development.",
+    "Quote {loc} renovation jobs faster. RenoBeam will turn photos into an itemized estimate with local pricing and a client-ready PDF.",
+    "An AI renovation estimator for {loc} contractors: photos and a short video in, line-item labor, materials and rates out. Pre-launch.",
+    "AI renovation estimating software for {loc} contractors: photos in, line-item labor, materials and regional pricing out. Join the early-access list.",
+    "Quote renovation work in {loc} in minutes. RenoBeam will turn phone photos into line-item estimates with regional pricing and branded PDFs. Pre-launch.",
+    "Renovation estimating software planned for {loc}: line-item labor and materials, regional price adjustment, client-ready PDFs. Join the early list.",
+    "Built by a working contractor: RenoBeam will turn a {loc} walkthrough video into an itemized renovation estimate with local pricing. In development.",
+    "For {loc} contractors: photos and a short video in, a line-item renovation estimate and branded PDF proposal out. In development — join the list.",
+    "RenoBeam will price renovation work in {loc} from photos: labor, materials, quantities, regional rates and a branded PDF. Join the early-access list.",
+    "AI renovation estimating for {loc} remodelers and GCs. Photos and a walkthrough video in; itemized labor and materials out. Pre-launch — join the list.",
+    "Estimate {loc} renovation jobs from phone photos: line-item labor, materials and regionally adjusted pricing, plus a branded PDF. In development.",
+    "Renovation estimating software for {loc}, built by a remodeling contractor. Photos in, itemized estimate and client-ready PDF out. Join the list.",
+    "Bid {loc} renovation work faster: RenoBeam will turn photos into a line-item estimate with local pricing and a branded proposal PDF. Pre-launch.",
 ]
+
+
+def meta_candidates(loc):
+    return [m.format(loc=loc) for m in METAS]
 
 INTRO_A = [
     "RenoBeam will turn a phone walkthrough into a line-item renovation estimate priced for {loc}. Upload photos and a short video of any space, and you get labor, materials, and quantities back in minutes — adjusted to {market} pricing — plus a branded, client-ready PDF proposal.",
@@ -933,8 +995,8 @@ def build_state_page(st):
     name = st["name"]
     slug = state_slug(name)
     canonical = f"{SITE}/locations/{slug}"
-    title = f"Renovation Estimating Software in {name} — RenoBeam"
-    meta = pick(name, "meta", METAS).format(loc=name, art=article(name))
+    title = fit_pick(name, "title", title_candidates(name), TITLE_MIN, TITLE_MAX)
+    meta = fit_pick(name, "meta", meta_candidates(name), DESC_MIN, DESC_MAX)
     area = {"@type": "State", "name": name}
     jsonld = jsonld_for(name, slug, meta, area)
 
@@ -1000,8 +1062,11 @@ def build_city_page(ct):
     full = f"{name}, {ct['abbr']}"
     slug = city_slug(ct)
     canonical = f"{SITE}/locations/{slug}"
-    title = f"Renovation Estimating Software in {full} — RenoBeam"
-    meta = pick(full, "meta", METAS).format(loc=name, art=article(name))
+    # Descriptions use the full "City, ST" label, not the bare city name: a
+    # city can share a name with a state (New York), and identical snippets
+    # across two pages would break the site's zero-duplicate guarantee.
+    title = fit_pick(full, "title", title_candidates(full), TITLE_MIN, TITLE_MAX)
+    meta = fit_pick(full, "meta", meta_candidates(full), DESC_MIN, DESC_MAX)
     area = {"@type": "City", "name": name,
             "containedInPlace": {"@type": "State", "name": ct["state"]}}
     jsonld = jsonld_for(full, slug, meta, area)
@@ -1066,9 +1131,9 @@ def build_city_page(ct):
 
 
 def build_hub_page():
-    title = "RenoBeam Service Areas — Renovation Estimating Software by Location"
-    meta = ("Find RenoBeam in your market: AI renovation estimating software with regional pricing, planned for all "
-            "50 states and every major US metro. Pre-launch — join the early-access list.")
+    title = "AI Renovation Estimating Software by Location | RenoBeam"
+    meta = ("AI renovation estimating software with regional pricing, planned for all 50 states "
+            "and every major US metro. Pre-launch — join the early list.")
     canonical = f"{SITE}/locations/"
     data = {
         "@context": "https://schema.org",
